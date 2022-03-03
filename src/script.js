@@ -44,6 +44,8 @@ scene.background = bgTexture;
 const sphereGeometry = new THREE.SphereBufferGeometry(.7, 64, 64)
 const planeGeometry = new THREE.BoxGeometry(50, .01, 50);
 const pyramidGeometry = new THREE.ConeGeometry( 7, 7, 4 );
+const pillarGeometry = new THREE.CylinderGeometry( .5, .5, 4, 8);
+const pillarBaseGeometry = new THREE.BoxGeometry(1.2, .25, 1.2);
 
 
 // LOADING OBJECTS
@@ -105,12 +107,16 @@ const pyramidMaterial = new THREE.MeshStandardMaterial();
 // pyramidMaterial.roughness = 1.0
 pyramidMaterial.map = pyramidNormText;
 pyramidMaterial.color = new THREE.Color(0xCDAA6D)
+
+
 const blackSphereMat = new THREE.MeshStandardMaterial()
 blackSphereMat.metalness = 1.0
 blackSphereMat.roughness = 0.8
 blackSphereMat.normalMap = sphereNormText;
-
 blackSphereMat.color = new THREE.Color(0x292929)
+
+const pillarMat = new THREE.MeshStandardMaterial({color: 0xCDAA6D})
+const pillarBaseMat = new THREE.MeshStandardMaterial({color: 0xCDAA6D})
 
 // Mesh
 const blackSphere = new THREE.Mesh(sphereGeometry,blackSphereMat)
@@ -123,6 +129,37 @@ pyramid.scale.set(.4, .4, .4)
 pyramid.rotation.y = Math.PI/4
 pyramid.position.set(0, -.48, 12)
 plane.position.y = -5
+
+// Creating the pillars ---
+{
+const pillar01 = new THREE.Mesh(pillarGeometry,pillarMat)
+scene.add(pillar01)
+pillar01.scale.set(.2, .2, .2)
+pillar01.position.set(6, -4.2, 12)
+const pillarBot01 = new THREE.Mesh(pillarBaseGeometry,pillarBaseMat)
+scene.add(pillarBot01)
+pillarBot01.position.set(6, -4.95, 12)
+const pillarTop01 = new THREE.Mesh(pillarBaseGeometry,pillarBaseMat)
+scene.add(pillarTop01)
+pillarTop01.position.set(6, -3.4, 12)
+pillar01.scale.set(.4, .4, .4)
+pillarBot01.scale.set(.4, .4, .4)
+pillarTop01.scale.set(.4, .4, .4)
+
+const pillar02 = new THREE.Mesh(pillarGeometry,pillarMat)
+scene.add(pillar02)
+pillar02.scale.set(.2, .2, .2)
+pillar02.position.set(6, -4.2, 10)
+const pillarBot02 = new THREE.Mesh(pillarBaseGeometry,pillarBaseMat)
+scene.add(pillarBot02)
+pillarBot02.position.set(6, -4.95, 10)
+const pillarTop02 = new THREE.Mesh(pillarBaseGeometry,pillarBaseMat)
+scene.add(pillarTop02)
+pillarTop02.position.set(6, -3.4, 10)
+pillar02.scale.set(.4, .4, .4)
+pillarBot02.scale.set(.4, .4, .4)
+pillarTop02.scale.set(.4, .4, .4)
+}
 
 
 const dbPyramid = gui.addFolder('pyramid')
