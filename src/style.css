@@ -21,7 +21,7 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    outline: none;
+    outline: white;
     mix-blend-mode: exclusion;
 }
 
@@ -32,9 +32,9 @@ body {
 }
 
 h1 {
-    font-size: 8rem;
+    font-size: 14rem;
     text-transform: uppercase;
-    color: white
+    color: #000000
 }
 
 section {height:100vh}

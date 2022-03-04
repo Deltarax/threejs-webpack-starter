@@ -385,7 +385,7 @@ class FogGUIHelper {
     // scene.fog = new THREE.Fog(color, near, far);
     // scene.background = new THREE.Color(color);
 
-    const color = 0xCDAA6D;
+    const color = 0x363636;
     const density = 0.08;
     scene.fog = new THREE.FogExp2(color, density);
    
