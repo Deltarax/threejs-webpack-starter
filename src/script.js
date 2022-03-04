@@ -42,7 +42,7 @@ scene.background = bgTexture;
 // Objects
 // const geometry = new THREE.TorusGeometry( .7, .2, 16, 100 );
 const sphereGeometry = new THREE.SphereBufferGeometry(.7, 64, 64)
-const planeGeometry = new THREE.BoxGeometry(50, .01, 50);
+const planeGeometry = new THREE.BoxGeometry(200, .01, 200);
 const pyramidGeometry = new THREE.ConeGeometry( 7, 7, 4, 7 );
 const pillarGeometry = new THREE.CylinderGeometry( .5, .5, 4, 8);
 const pillarBaseGeometry = new THREE.BoxGeometry(1.2, .25, 1.2);
@@ -356,6 +356,43 @@ scene.add(sunLight);
 const ambientLight = new THREE.AmbientLight( 0x000000 );
 scene.add(ambientLight);
 }
+
+//FOG
+class FogGUIHelper {
+    constructor(fog) {
+      this.fog = fog;
+    }
+    get near() {
+      return this.fog.near;
+    }
+    set near(v) {
+      this.fog.near = v;
+      this.fog.far = Math.max(this.fog.far, v);
+    }
+    get far() {
+      return this.fog.far;
+    }
+    set far(v) {
+      this.fog.far = v;
+      this.fog.near = Math.min(this.fog.near, v);
+    }
+}
+
+{
+    // const near = 12;
+    // const far = 20;
+    // const color = 0xCDAA6D;
+    // scene.fog = new THREE.Fog(color, near, far);
+    // scene.background = new THREE.Color(color);
+
+    const color = 0xCDAA6D;
+    const density = 0.08;
+    scene.fog = new THREE.FogExp2(color, density);
+   
+    // const fogGUIHelper = new FogGUIHelper(scene.fog);
+    // gui.add(fogGUIHelper, 'near', near, far).listen();
+    // gui.add(fogGUIHelper, 'far', near, far).listen();
+  }
 
 
 /**
